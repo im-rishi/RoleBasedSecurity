@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Employee List</title>
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+          crossorigin="anonymous">
+    <link rel="stylesheet" href="/main.css">
+
+</head>
+<body>
+<div class="container">
+            <h1 class = "text-center">Update Employee</h1>
+                <form th:action="@{/employees/{id}(id=${employee.id})}" th:object = "${employee}" method="POST">
+                    <div>
+                        <strong><label> Employee First Name </label></strong>
+                        <input
+                                type = "text"
+                                name = "firstName"
+                                th:field = "*{firstName}"
+                                placeholder="Enter Employee First Name"/>
+                    </div>
+
+                    <div>
+                        <strong><label> Employee Last Name </label></strong>
+                        <input
+                                type = "text"
+                                name = "lastName"
+                                th:field = "*{lastName}"
+                                placeholder="Enter Employee Last Name"/>
+                    </div>
+
+                    <div>
+                        <strong><label> Employee Email </label></strong>
+                        <input
+                                type = "text"
+                                name = "email"
+                                th:field = "*{email}"
+                                placeholder="Enter Employee Email"/>
+                    </div>
+                    <button type="submit" class="button1">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</body>
+</html>

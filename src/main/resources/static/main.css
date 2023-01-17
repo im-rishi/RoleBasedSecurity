@@ -1,0 +1,99 @@
+.button {
+  background-color: #4CAF50; #green
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+.button1{
+background-color: #008CBA; #blue
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+.button2{
+border-radius: 12px;
+}
+.button3{
+background-color: #f44336;
+}
+
+table, td, th {
+  border: 1px solid #ddd;
+  text-align: center;
+}
+
+
+input[type=text] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 4px;
+  box-sizing: border-box;
+}
+input[type=email] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 4px;
+  box-sizing: border-box;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.buttonnew {
+  display: inline-block;
+  padding: 15px 25px;
+  font-size: 24px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color: #4CAF50;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 9px #999;
+}
+
+.buttonnew:hover {background-color: #3e8e41}
+
+.buttonnew:active {
+  background-color: #3e8e41;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+ td {
+  padding: 8px;
+  text-align: center;
+  border-bottom: 1px solid #ddd;
+
+}
+th {
+  padding: 20px;
+  text-align: center;
+  border-bottom: 1px solid #ddd;
+  background:black; color:white;
+
+}
+
+tr:hover {background-color: #E8E8E8;
+}
+

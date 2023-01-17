@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Employee List</title>
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+          crossorigin="anonymous">
+    <link rel="stylesheet" href="/main.css">
+
+</head>
+<body>
+<div class="container my-2">
+    <strong>Current User:[[${User}]]</strong>
+        <a href="/logout" class="btn btn-primary btn-sm float-right">logout</a>
+    </form>
+
+<h1 align="center">Employee Details</h1>
+<br>
+<form th:action="@{/search}" method="GET">
+    <input type="text" name="keyword" th:value="${keyword}" placeholder="Find by Name" size="50">
+    <button type="submit" class="btn btn-info">Search</button>
+    <button type="reset" class="btn btn-info">Reset</button>
+</form>
+<br>
+
+<a th:href="@{employee/new}" class="button">Add Employee</a>
+
+<br>
+
+<table>
+    <thead>
+    <tr>
+        <th>Employee First Name</th>
+        <th>Employee Last Name</th>
+        <th>Employee Email</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr th:each="employees: ${employees}">
+        <td th:text="${employees.firstName}"></td>
+        <td th:text="${employees.lastName}"></td>
+        <td th:text="${employees.email}"></td>
+    <td>
+            <a th:href="@{/employees/edit/{id}(id=${employees.id})}"
+               class="button button2">Update</a>
+            <span th:if="${User=='admin'}"><a onclick="alert('Confirm to delete')" th:href="@{/employees/remove/{id}(id=${employees.id})}"
+               class="button button2 button3">Delete</a></span>
+        </td>
+    </tr>
+    </tbody>
+</table>
+    <a href="/">Back</a>
+</div>
+</body>
+</html>
