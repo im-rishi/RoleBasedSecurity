@@ -17,33 +17,35 @@ public class EmployeeController {
 
     Logger logger = LoggerFactory.getLogger(EmployeeController.class);
     private final employeeservice employeeservice;
-    public String currentUser()
-    {
+
+    public String currentUser() {
         Authentication loggedInUser = SecurityContextHolder.getContext().getAuthentication();
 
         return loggedInUser.getName();
     }
 
-    public EmployeeController(employeeservice employeeservice){
+    public EmployeeController(employeeservice employeeservice) {
         super();
         this.employeeservice = employeeservice;
     }
+
     @GetMapping("/")
-    public String listEmployees(Model model,String keyword){
-        model.addAttribute("employees",employeeservice.getAllemployees());
-        model.addAttribute("User",currentUser());
+    public String listEmployees(Model model, String keyword) {
+        model.addAttribute("employees", employeeservice.getAllemployees());
+        model.addAttribute("User", currentUser());
         logger.trace("Home Page Accessed");
         return "employees";
 
     }
 
     @GetMapping("/employee/new")
-    public String CreateEmployee(Model model){
+    public String CreateEmployee(Model model) {
         Employee employee = new Employee();
-        model.addAttribute("employee",employee);
+        model.addAttribute("employee", employee);
         logger.trace("Create page Accessed");
         return "Create_employee";
     }
+
     @PostMapping("/employees")
     public String saveStudent(@ModelAttribute("employee") Employee employee) {
         employeeservice.saveStudent(employee);
@@ -51,7 +53,7 @@ public class EmployeeController {
     }
 
     @GetMapping("/employees/edit/{id}")
-    public String editEmployeeForm(@PathVariable Long id, Model model){
+    public String editEmployeeForm(@PathVariable Long id, Model model) {
         model.addAttribute("employee", employeeservice.getEmployeebyId(id));
         logger.trace("update page accessed");
         return "edit_employee";
@@ -59,7 +61,7 @@ public class EmployeeController {
 
     @PostMapping("/employees/{id}")
     public String updateEmployee(@PathVariable Long id,
-                                @ModelAttribute("employee") Employee employee) {
+                                 @ModelAttribute("employee") Employee employee) {
 
         Employee existingEmployee = employeeservice.getEmployeebyId(id);
         existingEmployee.setId(id);
@@ -72,47 +74,19 @@ public class EmployeeController {
     }
 
     @GetMapping("/employees/remove/{id}")
-    public String DeleteEmployee(@PathVariable Long id){
+    public String DeleteEmployee(@PathVariable Long id) {
         employeeservice.DeleteEmployee(id);
         logger.trace("Successfully deleted");
         return "redirect:/";
 
     }
+
     @GetMapping("/search")
     public String home(Employee employee, Model model, String keyword) {
         List<Employee> employees;
         employees = employeeservice.getByKeyword(keyword);
         model.addAttribute("employees", employees);
-        model.addAttribute("user",currentUser());
+        model.addAttribute("user", currentUser());
         return "employees";
     }
-/*
-    @GetMapping("/admin")
-    public String admin()
-    {
-        return "redirect:/";
-    }
-
-    @GetMapping("/adminModified")
-    public String listNewEmployees(Model model){
-        model.addAttribute("employees",employeeservice.getAllemployees());
-        logger.trace("Home Page Accessed");
-        return "employees";
-
-    }
-    @GetMapping("/user")
-    public String user(){
-        return "redirect:/";
-    }
-    @GetMapping("/userModified")
-    public String listNewUserEmployees(Model model) {
-        model.addAttribute("employees", employeeservice.getAllemployees());
-        logger.trace("Home Page Accessed");
-        return "User_employees";
-    }
-    @GetMapping("/403")
-    public String error(){
-        return "403";
-    }
-*/
 }
